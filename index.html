@@ -5,72 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <title>Cálculo de Dosis de Contraste Iodado</title>
-    
     <style>
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
         }
+
+        .main-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 50px;
+        }
+
         .container {
             max-width: 400px;
-            margin: 0 auto;
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
+
         label {
             display: block;
             margin-bottom: 10px;
         }
-        input[type="number"] {
+
+        input[type="number"],
+        select {
             width: 100%;
             padding: 8px;
             margin-bottom: 10px;
         }
+
         button {
             padding: 10px 15px;
             font-size: 16px;
             cursor: pointer;
         }
+
         .result {
             margin-top: 20px;
             font-size: 18px;
         }
+
+        .images {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; 
+        }
+
+        .images img {
+            max-width: 150px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+            object-fit: cover; 
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Cálculo de Dosis de Contraste Iodado</h1>
-        <form id="dosisForm">
-            <label for="peso">Peso del paciente (kg):</label>
-            <input type="number" id="peso" name="peso" min="0" step="0.1" required>
-            <button type="button" onclick="calcularDosis()">Calcular Dosis</button>
-        </form>
-        <div id="resultado" class="result"></div>
+    <div class="main-container">
+        <div class="container">
+            <h1>Cálculadora de dosis para contraste Iodado Ultravist Bayer</h1>
+            <form id="dosisForm">
+                <label for="peso">Peso del paciente (kg):</label>
+                <input type="number" id="peso" name="peso" min="0" step="0.1" required>
+
+                <label for="edad">Categoría de edad:</label>
+                <select id="edad" name="edad" required>
+                    <option value="recién_nacido">Recién nacidos (&lt;1 mes)</option>
+                    <option value="lactante">Lactantes (1-2 años)</option>
+                    <option value="niño">Niños (2-11 años)</option>
+                    <option value="adulto">Adolescentes y adultos</option>
+                </select>
+
+                <label for="contraste">Tipo de contraste:</label>
+                <select id="contraste" name="contraste" required>
+                    <option value="ultravist_300">Ultravist 300</option>
+                    <option value="ultravist_370">Ultravist 370</option>
+                </select>
+
+                <button type="button" onclick="calcularDosis()">Calcular Dosis</button>
+            </form>
+            <div id="resultado" class="result"></div>
+        </div>
+        <div class="images">
+            <img src="/imagenes/Ultravist300.png" alt="Imagen 1">
+            <img src="/imagenes/Ultravist370.png" alt="Imagen 2">
+        </div>
     </div>
-
-    <script>
-        
-        function calcularDosis() {
-           
-            const pesoInput = document.getElementById('peso').value;
-            const pesoKg = parseFloat(pesoInput);
-
-            
-            if (pesoKg <= 0 || isNaN(pesoKg)) {
-                document.getElementById('resultado').innerText = "El peso debe ser un número positivo.";
-                return;
-            }
-
-            // Definir la dosis por kilogramo (en mililitros)
-            const dosisPorKg = 1;
-
-            // Calcular la dosis total
-            const dosisTotal = pesoKg * dosisPorKg;
-
-            
-            document.getElementById('resultado').innerText = `La dosis de contraste recomendada es ${dosisTotal} mililitros.`;
-        }
-    </script>
+    <script src="js/app.js"></script>
 </body>
 </html>
