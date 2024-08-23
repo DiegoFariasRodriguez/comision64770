@@ -76,5 +76,7 @@ button {
 .result {
     margin-top: 20px;
     font-size: 18px;
-    color: red; /* Color rojo para el texto del resultado */
+    color: rgb(253, 5, 5);
 }
+
+
