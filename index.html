@@ -67,6 +67,23 @@
             box-shadow: 0 0 5px rgba(0,0,0,0.3);
             object-fit: cover; 
         }
+
+        .pacientes-lista {
+            margin-top: 30px;
+        }
+
+        .pacientes-lista ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .pacientes-lista li {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -91,13 +108,19 @@
                     <option value="ultravist_370">Ultravist 370</option>
                 </select>
 
-                <button type="button" onclick="calcularDosis()">Calcular Dosis</button>
+                <button type="submit">Calcular Dosis</button>
             </form>
             <div id="resultado" class="result"></div>
+            <div class="pacientes-lista">
+                <h2>Pacientes Registrados</h2>
+                <ul id="pacientes">
+                    <!-- Lista de pacientes será añadida aquí -->
+                </ul>
+            </div>
         </div>
         <div class="images">
-            <img src="./imagenes/Ultravist300.png" alt="imagen1">
-            <img src="./imagenes/Ultravist370.png" alt="imagen2">
+            <img src="./imagenes/Ultravist300.png" alt="Ultravist 300">
+            <img src="./imagenes/Ultravist370.png" alt="Ultravist 370">
         </div>
     </div>
     <script src="./JS/app.js"></script>
